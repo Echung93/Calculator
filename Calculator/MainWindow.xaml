@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="700" Width="542">
+    <Grid Margin="0,0,2,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="792*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Content="1" HorizontalAlignment="Left" Height="81" Margin="10,492,0,0" VerticalAlignment="Top" Width="124" Click="Button_Click"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="81" Margin="397,492,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="2" HorizontalAlignment="Left" Height="81" Margin="139,492,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="3" HorizontalAlignment="Left" Height="81" Margin="268,492,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="4" HorizontalAlignment="Left" Height="81" Margin="10,406,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="81" Margin="397,406,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="5" HorizontalAlignment="Left" Height="81" Margin="139,406,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="6" HorizontalAlignment="Left" Height="81" Margin="268,406,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="7" HorizontalAlignment="Left" Height="81" Margin="10,320,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="81" Margin="397,320,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="8" HorizontalAlignment="Left" Height="81" Margin="139,320,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="9" HorizontalAlignment="Left" Height="81" Margin="268,320,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="%" HorizontalAlignment="Left" Height="81" Margin="10,234,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="&lt;=" HorizontalAlignment="Left" Height="81" Margin="397,234,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="CE" HorizontalAlignment="Left" Height="81" Margin="139,234,0,0" VerticalAlignment="Top" Width="124" Click="Button_Click"/>
+        <Button Content="C" HorizontalAlignment="Left" Height="81" Margin="268,234,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="+/-" HorizontalAlignment="Left" Height="81" Margin="10,578,0,0" VerticalAlignment="Top" Width="124" Click="Button_Click_1"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="81" Margin="397,578,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button Content="0" HorizontalAlignment="Left" Height="81" Margin="139,578,0,0" VerticalAlignment="Top" Width="124" Click="Button_Click"/>
+        <Button Content="." HorizontalAlignment="Left" Height="81" Margin="268,578,0,0" VerticalAlignment="Top" Width="124" Click="Button_Click_2"/>
+        <TextBox HorizontalAlignment="Left" Height="165" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="509" RenderTransformOrigin="0.5,0.5" Margin="11,48,0,0" TextChanged="TextBox_TextChanged">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.103"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+
     </Grid>
 </Window>

@@ -24,5 +24,18 @@ namespace Calculator
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            string number = button.Content.ToString();  // 현재 입력한 버튼 숫자
+            //MessageBox.Show($"{button.Name} 클릭 되었습니다.");
+            string number1 = button.Name.ToString();
+        }
     }
 }
