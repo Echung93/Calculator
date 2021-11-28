@@ -12,21 +12,21 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Button Name ="num1" Content="1" HorizontalAlignment="Left" Height="81" Margin="10,492,0,0" VerticalAlignment="Top" Width="124" Click="num_Click"/>
-        <Button Name ="plus" Content="+" HorizontalAlignment="Left" Height="81" Margin="397,492,0,0" VerticalAlignment="Top" Width="124" Click="plus_Click"/>
+        <Button Name ="plus" Content="+" HorizontalAlignment="Left" Height="81" Margin="397,492,0,0" VerticalAlignment="Top" Width="124" Click="function_Click"/>
         <Button Name ="num2" Content="2" HorizontalAlignment="Left" Height="81" Margin="139,492,0,0" VerticalAlignment="Top" Width="124" Click="num_Click"/>
         <Button Name ="num3" Content="3" HorizontalAlignment="Left" Height="81" Margin="268,492,0,0" VerticalAlignment="Top" Width="124" Click="num_Click"/>
         <Button Name ="num4" Content="4" HorizontalAlignment="Left" Height="81" Margin="10,406,0,0" VerticalAlignment="Top" Width="124" Click="num_Click"/>
-        <Button Name ="subtract" Content="-" HorizontalAlignment="Left" Height="81" Margin="397,406,0,0" VerticalAlignment="Top" Width="124" Click="subtract_Click"/>
+        <Button Name ="subtract" Content="-" HorizontalAlignment="Left" Height="81" Margin="397,406,0,0" VerticalAlignment="Top" Width="124" Click="function_Click"/>
         <Button Name ="num5" Content="5" HorizontalAlignment="Left" Height="81" Margin="139,406,0,0" VerticalAlignment="Top" Width="124" Click="num_Click"/>
         <Button Name ="num6" Content="6" HorizontalAlignment="Left" Height="81" Margin="268,406,0,0" VerticalAlignment="Top" Width="124" Click="num_Click"/>
         <Button Name ="num7" Content="7" HorizontalAlignment="Left" Height="81" Margin="10,320,0,0" VerticalAlignment="Top" Width="124" Click="num_Click"/>
-        <Button Name ="multiply" Content="×" HorizontalAlignment="Left" Height="81" Margin="397,320,0,0" VerticalAlignment="Top" Width="124" Click="multiply_Click"/>
+        <Button Name ="multiply" Content="×" HorizontalAlignment="Left" Height="81" Margin="397,320,0,0" VerticalAlignment="Top" Width="124" Click="function_Click"/>
         <Button Name ="num8" Content="8" HorizontalAlignment="Left" Height="81" Margin="139,320,0,0" VerticalAlignment="Top" Width="124" Click="num_Click"/>
         <Button Name ="num9" Content="9" HorizontalAlignment="Left" Height="81" Margin="268,320,0,0" VerticalAlignment="Top" Width="124" Click="num_Click"/>
-        <Button Name ="reset" Content="C" HorizontalAlignment="Left" Height="81" Margin="10,234,0,0" VerticalAlignment="Top" Width="124" Click="reset_Click"/>
-        <Button Name ="dividing" Content="÷" HorizontalAlignment="Left" Height="81" Margin="397,234,0,0" VerticalAlignment="Top" Width="124" Click="dividing_Click"/>
-        <Button Name ="per" Content="%" HorizontalAlignment="Left" Height="81" Margin="139,234,0,0" VerticalAlignment="Top" Width="124" Click="per_Click" />
-        <Button Name ="clear" Content="&lt;=" HorizontalAlignment="Left" Height="81" Margin="268,234,0,0" VerticalAlignment="Top" Width="124" Click="clear_Click"/>
+        <Button Name ="clear" Content="C" HorizontalAlignment="Left" Height="81" Margin="10,234,0,0" VerticalAlignment="Top" Width="124" Click="Clear_Click"/>
+        <Button Name ="dividing" Content="÷" HorizontalAlignment="Left" Height="81" Margin="397,234,0,0" VerticalAlignment="Top" Width="124" Click="function_Click"/>
+        <Button Name ="per" Content="%" HorizontalAlignment="Left" Height="81" Margin="139,234,0,0" VerticalAlignment="Top" Width="124" Click="Per_Click" />
+        <Button Name ="delete" Content="&lt;=" HorizontalAlignment="Left" Height="81" Margin="268,234,0,0" VerticalAlignment="Top" Width="124" Click="Delete_Click"/>
         <Button Name ="negative" Content="±" HorizontalAlignment="Left" Height="81" Margin="10,578,0,0" VerticalAlignment="Top" Width="124" Click="negative_Click" />
         <Button Name ="equals" Content="=" HorizontalAlignment="Left" Height="81" Margin="397,578,0,0" VerticalAlignment="Top" Width="124" Click="equals_Click"/>
         <Button Name ="num0" Content="0" HorizontalAlignment="Left" Height="81" Margin="139,578,0,0" VerticalAlignment="Top" Width="124" Click="num_Click" />
