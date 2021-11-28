@@ -124,6 +124,7 @@ namespace Calculator
 
                         else
                         {
+
                             n = double.Parse(number1);
                             n1 = double.Parse(number2);
                             resultNum = n1 + n;
