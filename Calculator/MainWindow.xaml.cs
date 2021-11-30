@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Calculator
 {
@@ -22,24 +10,23 @@ namespace Calculator
     {
         string number;
         string number1 = "0";
-        string number2;
+        string number2 = "0";
+        string number3 = "0";
         string function;
         string function1 = null;
-        string function2;
-        double n;
-        double n1;
-        double resultNum;
+        string function2 = null;
+        string function3 = null;
         bool check = true;
         bool check1 = false;
-        bool check2;
-        string s ;
+        bool check2 = false;
+        bool check3;
+        bool numCheck = false;
         int i = 0;
 
 
         public MainWindow()
         {
             InitializeComponent();
-
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -49,482 +36,364 @@ namespace Calculator
 
         private void Num_Click(object sender, RoutedEventArgs e)
         {
-            check2 = false;
-            check1 = false;
+            string a;
+            string s;
+            check3 = false;
             Button button = sender as Button;
-            //function1 = null;
-            number = button.Content.ToString();  // 현재 입력한 버튼 숫자          
-            if (number1.Length < 17)
+            number = button.Content.ToString();  // 현재 입력한 버튼 숫자     
+            if (number1 == null)
             {
-                if (text.Text == "0")
+                number1 = "0";
+            }
+
+            if (check2)
+            {
+                number2 = number1;
+                number1 = "0";
+                check2 = false;
+            }
+
+
+            a = number1.Replace(",", "").Replace(".", "");
+            if (a.Length < 16)
+            {
+                if (result.Text == "0")
                 {
-                    text.Text = number;
+                    result.Text = PrintResult(number);
                     number1 = number;
                 }
 
                 else if (check == false)
                 {
-                    text.Text = null;
+                    result.Text = null;
                     number1 = null;
-                    text.Text += number;
                     check = true;
                     number1 += number;
                 }
 
                 else
                 {
-                    text.Text += number;
-                    number1 += number;
+                    if (number1 == "0")
+                        number1 = number;
+                    else
+                        number1 += number;
+
                 }
 
-                //if (number1.Length < 17 && number1.Contains("."))
-                //{
-                //    text.Text = string.Format("{0:N0}", n);
-                //}
                 if (number1.Contains("."))
                 {
-                    ++i;   
-                    s = "{0:N"+ i + "}";
-                    text.Text = string.Format(s, double.Parse(number1));
-                    number1 = text.Text;
+                    ++i;
+                    s = "{0:N" + i + "}";
+                    number1 = string.Format(s, double.Parse(number1));
+                    result.Text = PrintResult(number1);
                 }
 
-                else if (number1.Length < 17)
+                else if (a.Length < 16)
                 {
-                    text.Text = string.Format("{0:N0}", double.Parse(number1));
-                    number1 = text.Text;
+                    number1 = string.Format("{0:N0}", double.Parse(number1));
+                    result.Text = PrintResult(number1);
                 }
 
-                
-                //else
-                //{
-                //    n = long.Parse(number1);
-                //    text.Text = n.ToString();
-                //    number1 = text.Text;
-                //}
+                if (numCheck == true)
+                {
+                    text.Text = PrintResult(number2) + function; /*+ number1;*/
+                }
             }
-
         }
         private void Negative_Click(object sender, RoutedEventArgs e)
         {
-            if (text.Text != null && text.Text != "")
+            double n1;
+            if (check2)
             {
-                n1 = double.Parse(text.Text) * (-1);
-                text.Text = n1.ToString();
-                number2 = text.Text;
+                n1 = double.Parse(number2) * (-1);
+                number2 = n1.ToString();
+            }
+
+            else if (text.Text != null && text.Text != "0")
+            {
+                if (function == null && number1 != "0")
+                {
+                    n1 = double.Parse(number1) * (-1);
+                    number1 = n1.ToString();
+                }
+
+                else
+                {
+                    n1 = double.Parse(number1) * (-1);
+                    number1 = n1.ToString();
+                }
+
+            }
+
+            if (number2 == "0")
+            {
+                n1 = double.Parse(number1) * (-1);
+                number1 = n1.ToString();
+                result.Text = PrintResult(number1);
+            }
+
+            else
+            {
+                result.Text = PrintResult(number1);
+                text.Text = PrintResult(number2) + function + PrintResult(number1);
             }
         }
 
         private void Point_Click(object sender, RoutedEventArgs e)
         {
-            if (!text.Text.Contains("."))
+            if (!number1.Contains("."))
             {
-                text.Text += ".";
+                result.Text += ".";
                 number1 += ".";
             }
         }
 
         private void Equals_Click(object sender, RoutedEventArgs e)
         {
+            check1 = true;
+            check2 = true;
             i = 1;
-            Function();       
+            Function();
+            function1 = function;
+            text.Text = PrintResult(number2) + function + PrintResult(number1) + " = ";
+            number2 = number3;
         }
 
         private void Function_Click(object sender, RoutedEventArgs e)
         {
-            i = 1;
-            check1 = false;
             Button button = sender as Button;
             function = button.Content.ToString();
-            if (function2 == function && number2 != null && number1 != "0")
+            i = 0;
+            numCheck = true;
+
+            if (check1)
+            {
+                number1 = number2;
+                text.Text = PrintResult(number3) + function;
+                function1 = function;
+                function2 = function;
+                number1 = "0";
+                if (check2)
+                {
+                    number1 = number2;
+                    check2 = false;
+                }
+            }
+
+            else if (function1 != null && number1 != "0" && check == false)
             {
                 Function();
                 number1 = "0";
+                function = function2;
+                function1 = function;
+                text.Text = number3 + function;
+                number2 = number3;
+                function2 = null;
+                check1 = false;
             }
 
-            else if (function2 != null)
+            else if (number1 == "0" || number1 == null)
             {
-                Function();
-                number1 = "0";
-            }
-
-            else if (text.Text.Contains(" × ") || text.Text.Contains(" ÷ ") || text.Text.Contains(" - ") || text.Text.Contains(" + "))
-            {
-                if ((function1 == button.Content.ToString()) && (number1 != "0"))
+                if (text.Text.Contains(" + ") || text.Text.Contains(" - ") || text.Text.Contains(" × ") || text.Text.Contains(" ÷ "))
                 {
-                    Function();
-                }
+                    if (function2 == function)
+                    {
+                        function1 = function;
+                        text.Text = PrintResult(number2) + function1;
+                    }
 
-                else
-                {
-                    number1 = text.Text.Substring(0, (text.Text.Length - 3));
-                    text.Text = number1 + function;                   
+                    else
+                    {
+                        function1 = function;
+                        text.Text = PrintResult(number2) + function1;
+                    }
                 }
-
-                number2 = number1;
-                number1 = "0";
+                check1 = false;
             }
 
             else
             {
-                number1 = text.Text;               
-                if (function1 == null)
+                if (function1 != null)
                 {
-                    text.Text += function;
-                    number2 = number1;
-                    n = double.Parse(number2);
+                    Function();
+                    number2 = result.Text;
+                    function = function2;
                 }
 
                 else
                 {
-                    n = double.Parse(number2);
-                    function1 = function;
+                    number2 = number1;
+                }
+                if (!text.Text.Contains(" + ") && !text.Text.Contains(" - ") && !text.Text.Contains(" × ") && !text.Text.Contains(" ÷ "))
+                {
                     text.Text += function;
                 }
-                number1 = "0";
+
+                function1 = function;
+                function2 = function;
+                text.Text = PrintResult(number2) + function1;
+                number1 = null;
+                check1 = false;
             }
 
-            function2 = function;
-            
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
-        {   
+        {
             if (i > 1)
             {
                 i--;
             }
-            
-            if (text.Text.Length == 0)
+
+            if (check2)
+            {
+                text.Text = "";
+            }
+            else if (number1 == null)
             {
 
             }
 
-            else if (check1 == true)
+            else if (number1 != "0" && number1 != "")
             {
-                number2 = null;
-                text.Text = number2;
+                int j = number1.Length - 1;
+
+                if (j == 0)
+                    number1 = "0";
+
+                else
+                    number1 = number1.Substring(0, j);
+                result.Text = number1;
             }
 
             else
             {
-                if (function == null && number1 == null)
-                {
-                }
-
-                else if (function == null)
-                {
-                    number1 = number1.Substring(0, (number1.Length - 1));
-                    text.Text = number1;
-                    number2 = text.Text;
-                }
-
-                else
-                {
-                    if (number1 == null)
-                    {
-                        number1 = text.Text.Substring(0, (text.Text.Length - 3));
-                        text.Text = number1;
-                        function = null;
-                        function1 = null;
-                    }
-                    else
-                    {
-                        number1 = number1.Substring(0, (number1.Length - 1));
-                        text.Text = number1;
-                    }
-                }
+                number1 = "0";
             }
+
         }
 
         private void ClearEnty_Click(object sender, RoutedEventArgs e)
         {
-            
             if (function != null && check1 == true)
             {
-                number2 = number1;
-                number1 = "0";
-                text.Text = number1;
+                number2 = "0";
+                text.Text = number2;
+                result.Text = number2;
                 check2 = true;
             }
 
             else
             {
                 number1 = "0";
-                number2 = "0";                
-                text.Text = number1;
+                result.Text = number1;
+                check3 = true;
             }
 
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
-            i = 1;
+            i = 0;
             number = "0";
             number1 = "0";
             number2 = "0";
-            text.Text = "";
+            number3 = "0";
+            text.Text = "0";
+            result.Text = "0";
             function = null;
             function1 = null;
-            n = 0;
-            n1 = 0;
-            resultNum = 0;
-
+            function2 = null;
+            numCheck = false;
+            check1 = false;
+            check2 = false;
         }
+
 
         public void Function()
         {
-            check = false;
-            check1 = true;
-
-            if (check2 == true)
+            if (function1 != function)
             {
-                number2 = "0";
+                function2 = function;
+                function = function1;
             }
 
-            if (function1 == null)
+            else if (check1)
             {
-                switch (function)
+                function2 = function;
+                function = function1;
+            }
+
+            if (number1 == null && check3 == false)
+            {
+                number1 = number2;
+            }
+
+            double n1 = double.Parse(number2);
+            double n = double.Parse(number1);
+
+            switch (function)
+            {
+                case " + ":
+                    n1 += n;
+                    number3 = n1.ToString();
+                    result.Text = PrintResult(number3);
+                    text.Text = PrintResult(number3);
+                    function1 = null;
+                    break;
+
+                case " - ":
+                    n1 -= n;
+                    number3 = n1.ToString();
+                    result.Text = PrintResult(number3);
+                    text.Text = PrintResult(number3);
+                    function1 = null;
+                    break;
+
+                case " × ":
+                    n1 *= n;
+                    number3 = n1.ToString();
+                    result.Text = PrintResult(number3);
+                    text.Text = PrintResult(number3);
+                    function1 = null;
+                    break;
+
+                case " ÷ ":
+                    n1 /= n;
+                    number3 = n1.ToString();
+                    result.Text = PrintResult(number3);
+                    text.Text = PrintResult(number3);
+                    function1 = null;
+                    break;
+            }
+
+            text.Text = result.Text + function3;
+        }
+
+        private static string PrintResult(string resultNum)
+        {
+            int count;
+            string a = resultNum.Replace(".", "").Replace(",", "");
+            if (a.Length < 17)
+            {
+                if (resultNum.Contains("."))
                 {
-                    case " + ":
-                        if (number1 == "0")
-                        {
-                            n = double.Parse(number2);
-                            n1 = double.Parse(number2);
-                            resultNum = n1 + n;
-                        }
+                    count = resultNum.Length - resultNum.IndexOf('.');
 
-                        else
-                        {
+                    if (count == 1)
+                        return resultNum;
 
-                            n = double.Parse(number1);
-                            n1 = double.Parse(number2);
-                            resultNum = n1 + n;
-                        }
-
-                        number2 = resultNum.ToString();
-                        //text.Text = string.Format("{0:N0}", resultNum);
-                        if (number2.Length < 17 && !number2.Contains("E"))
-                        {
-                            //text.Text = string.Format("{0:N5}", resultNum);
-                            if (s == null)
-                                text.Text = string.Format("{0:N0}", resultNum);
-                            else
-                                text.Text = string.Format(s, resultNum);
-                        }
-                        else
-                            text.Text = number2;
-                        function1 = function;
-
-                        break;
-
-                    case " - ":
-                        if (number1 == "0")
-                        {
-                            n = double.Parse(number2);
-                            n1 = double.Parse(number2);
-                            resultNum = n1 - n;
-                        }
-
-                        else
-                        {
-                            n = double.Parse(number1);
-                            if (number2 == "")
-                            {
-                                n1 = 0;
-                            }
-
-                            else
-                            {
-                                n1 = double.Parse(number2);
-                            }
-                            resultNum = n1 - n;
-                        }
-
-                        number2 = resultNum.ToString();
-                        if (number2.Length < 17 && !number2.Contains("E"))
-                        {
-                            if (s == null)
-                                text.Text = string.Format("{0:N0}", resultNum);
-                            else
-                                text.Text = string.Format(s, resultNum);
-                        }
-                        else
-                            text.Text = number2;
-                        function1 = function;
-                        break;
-
-                    case " × ":
-                        if (number1 == "0")
-                        {
-                            n = double.Parse(number2);
-                            n1 = double.Parse(number2);
-                            resultNum = n1 * n;
-                        }
-
-                        else
-                        {
-                            n = double.Parse(number1);
-                            n1 = double.Parse(number2);
-                            resultNum = n1 * n;
-                        }
-
-                        number2 = resultNum.ToString();
-                        if (number2.Length < 17 && !number2.Contains("E"))
-                        {
-                            if (s == null)
-                                text.Text = string.Format("{0:N0}", resultNum);
-                            else
-                                text.Text = string.Format(s, resultNum);
-                        }
-                        else
-                            text.Text = number2;
-                        function1 = function;
-                        break;
-
-                    case " ÷ ":
-                        if (number1 == "0")
-                        {
-                            n = double.Parse(number2);
-                            n1 = double.Parse(number2);
-                            resultNum = n1 / n;
-                        }
-
-                        else
-                        {
-                            n = double.Parse(number1);
-                            n1 = double.Parse(number2);
-                            resultNum = n1 / n;
-                        }
-
-                        number2 = resultNum.ToString();
-                        if (number2.Length < 17 && !number2.Contains("E"))
-                        {
-                            if (s == null)
-                                text.Text = string.Format("{0:N0}", resultNum);
-                            else
-                                text.Text = string.Format(s, resultNum);
-                            //text.Text = string.Format(s, resultNum);
-                        }
-                        else
-                            text.Text = number2;
-                        function1 = function;
-                        break;
+                    string resultNum1 = "{0:N" + (count - 1) + "}";
+                    resultNum = string.Format(resultNum1, double.Parse(resultNum));
                 }
+                else
+                    resultNum = string.Format("{0:N0}", double.Parse(resultNum));
             }
 
             else
             {
-                string check = text.Text.Replace(",", "");
-                switch (function)
-                {
-                    case " + ":
-                        if (number2 == check)
-                        {
-                            n1 = double.Parse(number2);
-                            n1 += n;
-                            number2 = n1.ToString();
-                        }
-
-                        else
-                        {
-                            n1 = double.Parse(number2);
-                            n1 += double.Parse(check);
-                            number2 = n1.ToString();
-                        }
-                        //text.Text = string.Format("{0:N0}", int.Parse(number2));
-                        if (number2.Length < 17 && !number2.Contains("E"))
-                        {
-                            if (s == null)
-                             text.Text = string.Format("{0:N0}", double.Parse(number2));
-                            else
-                            text.Text = string.Format(s, double.Parse(number2));
-                        }
-                        else
-                            text.Text = number2;
-                        break;
-
-                    case " - ":
-                        if (number2 == check)
-                        {
-                            n1 = double.Parse(number2);
-                            n1 -= n;
-                            number2 = n1.ToString();
-                        }
-
-                        else
-                        {
-                            n1 = double.Parse(number2);
-                            n1 -= double.Parse(check);
-                            number2 = n1.ToString();
-                        }
-
-                        if (number2.Length < 17 && !number2.Contains("E"))
-                        {
-                            if (s == null)
-                                text.Text = string.Format("{0:N0}", double.Parse(number2));
-                            else
-                                text.Text = string.Format(s, double.Parse(number2));
-                        }
-                        else
-                            text.Text = number2;
-                        break;
-
-                    case " × ":
-                        if (number2 == check)
-                        {
-                            n1 = double.Parse(number2);
-                            n1 *= n;
-                            number2 = n1.ToString();
-                        }
-
-                        else
-                        {
-                            n1 = double.Parse(number2);
-                            n1 *= double.Parse(check);
-                            number2 = n1.ToString();
-                        }
-
-
-                        if (number2.Length < 17 && !number2.Contains("E"))
-                        {
-                            if (s == null)
-                                text.Text = string.Format("{0:N0}", double.Parse(number2));
-                            else
-                                text.Text = string.Format(s, double.Parse(number2));
-                        }
-                        else
-                            text.Text = number2;
-                        break;
-
-                    case " ÷ ":
-                        if (number2 == check)
-                        {
-                            n1 = double.Parse(number2);
-                            n1 /= n;
-                            number2 = n1.ToString();
-                        }
-
-                        else
-                        {
-                            n1 = double.Parse(number2);
-                            n1 /= double.Parse(check);
-                            number2 = n1.ToString();
-                        }
-
-                        if (number2.Length < 17 && !number2.Contains("E"))
-                        {
-                            if (s == null)
-                                text.Text = string.Format("{0:N0}", double.Parse(number2));
-                            else
-                                text.Text = string.Format(s, double.Parse(number2));
-                        }
-                        else
-                            text.Text = number2;
-                        break;
-                }
+                resultNum = string.Format("{0:N0}", double.Parse(resultNum));
             }
-
-            function2 = null;
+            return resultNum;
         }
     }
 }
