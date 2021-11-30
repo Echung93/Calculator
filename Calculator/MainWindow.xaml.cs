@@ -176,11 +176,11 @@ namespace Calculator
 
         private void Equals_Click(object sender, RoutedEventArgs e)
         {
-            if(check3)
+            if (check3)
             {
                 number1 = "0";
             }
-           
+
             if (number1 == "0.")
             {
                 number1 = "0";
@@ -301,7 +301,7 @@ namespace Calculator
                 text.Text = PrintResult(number2) + function1;
                 number1 = null;
                 check1 = false;
-            }           
+            }
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
@@ -345,7 +345,7 @@ namespace Calculator
                 number2 = number1;
                 text.Text = number2;
                 result.Text = number2;
-                check3 = true;                
+                check3 = true;
             }
 
             else
