@@ -23,16 +23,16 @@
         <Button Name ="multiply" Content=" × " HorizontalAlignment="Left" Height="81" Margin="397,320,0,0" VerticalAlignment="Top" Width="124" Click="Function_Click"/>
         <Button Name ="num8" Content="8" HorizontalAlignment="Left" Height="81" Margin="139,320,0,0" VerticalAlignment="Top" Width="124" Click="Num_Click"/>
         <Button Name ="num9" Content="9" HorizontalAlignment="Left" Height="81" Margin="268,320,0,0" VerticalAlignment="Top" Width="124" Click="Num_Click"/>
-        <Button Name ="clear" Content="C" HorizontalAlignment="Left" Height="81" Margin="10,234,0,0" VerticalAlignment="Top" Width="124" Click="Clear_Click"/>
+        <Button Name ="clear" Content="C" HorizontalAlignment="Left" Height="81" Margin="139,234,0,0" VerticalAlignment="Top" Width="124" Click="Clear_Click"/>
         <Button Name ="dividing" Content=" ÷ " HorizontalAlignment="Left" Height="81" Margin="397,234,0,0" VerticalAlignment="Top" Width="124" Click="Function_Click"/>
-        <Button Name ="clearEnty" Content="CE" HorizontalAlignment="Left" Height="81" Margin="139,234,0,0" VerticalAlignment="Top" Width="124" Click="ClearEnty_Click" />
+        <Button Name ="clearEnty" Content="CE" HorizontalAlignment="Left" Height="81" Margin="10,234,0,0" VerticalAlignment="Top" Width="124" Click="ClearEnty_Click" />
         <Button Name ="delete" Content="&lt;=" HorizontalAlignment="Left" Height="81" Margin="268,234,0,0" VerticalAlignment="Top" Width="124" Click="Delete_Click"/>
         <Button Name ="negative" Content="±" HorizontalAlignment="Left" Height="81" Margin="10,578,0,0" VerticalAlignment="Top" Width="124" Click="Negative_Click" />
         <Button Name ="equals" Content="=" HorizontalAlignment="Left" Height="81" Margin="397,578,0,0" VerticalAlignment="Top" Width="124" Click="Equals_Click"/>
         <Button Name ="num0" Content="0" HorizontalAlignment="Left" Height="81" Margin="139,578,0,0" VerticalAlignment="Top" Width="124" Click="Num_Click" />
         <Button Name ="point" Content="." HorizontalAlignment="Left" Height="81" Margin="268,578,0,0" VerticalAlignment="Top" Width="124" Click="Point_Click" />
-        <TextBlock Name ="text"  HorizontalAlignment="Right" Margin="0,10,9.6,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="105" Width="512" TextAlignment="Right"/>
-        <TextBlock Name ="result"  HorizontalAlignment="Right" Margin="0,120,11.6,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="101" Width="512" TextAlignment="Right"/>
+        <TextBlock Name ="text" FontSize="20" HorizontalAlignment="Right" Margin="0,10,9.6,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="105" Width="512" TextAlignment="Right"/>
+        <TextBlock Name ="result" FontSize="20"  HorizontalAlignment="Right" Margin="0,120,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="101" Width="512" TextAlignment="Right"/>
 
     </Grid>
 </Window>

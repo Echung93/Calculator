@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace test
+namespace Calculator
 {
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
@@ -66,6 +66,7 @@ namespace test
                 {
                     result.Text = PrintResult(number);
                     number1 = number;
+                    function1 = function;
                 }
 
                 else if (check == false)
@@ -175,6 +176,16 @@ namespace test
 
         private void Equals_Click(object sender, RoutedEventArgs e)
         {
+            if(check3)
+            {
+                number1 = "0";
+            }
+           
+            if (number1 == "0.")
+            {
+                number1 = "0";
+            }
+
             if (number1 == "0" && number2 == "0")
             {
                 text.Text = "0";
@@ -186,6 +197,12 @@ namespace test
                 check2 = true;
                 i = 1;
                 Function();
+                if (check3)
+                {
+                    number1 = number2;
+                    check3 = false;
+                }
+
                 function1 = function;
                 if (number2 != "0")
                     text.Text = PrintResult(number2) + function + PrintResult(number1) + " = ";
@@ -200,6 +217,11 @@ namespace test
             Button button = sender as Button;
             function = button.Content.ToString();
             i = 0;
+            if (number1 == "0.")
+            {
+                number1 = "0";
+            }
+
             numCheck = true;
             if (check1 && number2 == "0")
             {
@@ -248,6 +270,11 @@ namespace test
                         text.Text = PrintResult(number2) + function1;
                     }
                 }
+
+                else
+                {
+                    text.Text = number1 + function;
+                }
                 check1 = false;
             }
 
@@ -274,8 +301,7 @@ namespace test
                 text.Text = PrintResult(number2) + function1;
                 number1 = null;
                 check1 = false;
-            }
-
+            }           
         }
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
@@ -316,10 +342,10 @@ namespace test
         {
             if (function != null && check1 == true)
             {
-                number2 = "0";
+                number2 = number1;
                 text.Text = number2;
                 result.Text = number2;
-                check2 = true;
+                check3 = true;                
             }
 
             else
